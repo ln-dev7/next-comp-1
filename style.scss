@@ -18,3 +18,70 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.card {
+  background: linear-gradient(110deg, #272727 0.06%, #171717);
+  box-shadow: inset 0 0 6px hsla(0, 0%, 100%, 0.1);
+
+  .grid-style {
+    div {
+      height: 1px;
+      width: 1px;
+      border-radius: 50%;
+      background: #888;
+      transition: .25s;
+    }
+  }
+
+  &:hover .grid-style {
+     @for $i from 0 through 94 {
+      @if $i == 0 or $i == 4 or $i == 6 or $i == 7 or $i == 8 or $i == 10 or $i == 14 or $i == 16  or $i == 17  or $i == 18 or $i == 19 or $i == 20 or $i == 23 or $i == 25 or $i == 30 or $i == 32 or $i == 36 or $i == 38 or $i == 40 or $i == 42 or $i == 44 or $i == 45 or $i == 46 or $i == 50 or $i == 55 or $i == 57 or $i == 60 or $i == 61 or $i == 63 or $i == 68 or $i == 70 or $i == 74 or $i == 76 or $i == 80 or $i == 82 or $i == 83 or $i == 84 or $i == 86 or $i == 90 or $i == 93 {
+        div[data-index="#{$i}"] {
+          position: relative;
+          background: #888;
+          animation: animate .25s ease-in-out #{$i * 0.025}s forwards;
+          &:before {
+            content: "";
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            filter: blur(2px);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #3291ff; 
+            opacity: 0;
+            border-radius: 50%;
+            animation: animate2 .25s ease-in-out #{$i * 0.025}s forwards;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes animate {
+  0% {
+    background: #888;
+  }
+  100% {
+    background: #0070f3;
+  }
+}
+
+@keyframes animate2 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.grid-style {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  gap: 19px;
+  grid-template-columns: repeat(var(--columns), 1fr);
+}
